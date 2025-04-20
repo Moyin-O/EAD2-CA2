@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">FightBase</string>
+    <string name="search_placeholder">Buscar Luchadores</string>
+
+    <string name="nationality_format">Nacionalidad: %1$s</string>
+
+    <string name="loading">Cargando...</string>
+    <string name="error_loading">Error al cargar datos</string>
+    <string name="fighter_list_title">Lista de Peleadores</string>
+    <string name="record">Récord</string>
+    <string name="weight_class">Categoría de Peso</string>
+    <string name="nationality">Nacionalidad</string>
+    <string name="back">Atrás</string>
+    <string name="record_format">Récord: %1$s-%2$s-%3$s</string>
+    <string name="weight_class_format">Categoría de peso: %1$s</string>
+    <string name="add_fighter">Agregar Peleador</string>
+
+</resources>
