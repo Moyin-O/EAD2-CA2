@@ -60,6 +60,11 @@ fun FighterListScreen(
                 }
             }
 
+            LaunchedEffect(fighters) {
+                println("📋 UI received fighters: ${fighters.size}")
+            }
+
+
         }
         Box(modifier = Modifier.fillMaxSize()) {
             FloatingActionButton(

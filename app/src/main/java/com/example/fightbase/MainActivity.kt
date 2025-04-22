@@ -32,7 +32,12 @@ class MainActivity : ComponentActivity() {
                     error = null
                     scope.launch {
                         try {
-                            fighters = ApiClient.fighterService.getFighters()
+                            val response = ApiClient.fighterService.getFighters()
+                            println("✅ Fetched fighters: ${response.size}")
+                            response.forEach {
+                                println("👉 Fighter: ${it.name} - ${it.weightClass}")
+                            }
+                            fighters = response
                         } catch (e: Exception) {
                             error = e.message
                             e.printStackTrace()
@@ -42,10 +47,14 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                // Load on first launch
-                LaunchedEffect(Unit) {
-                    loadFighters()
+
+                // Load on first launch AND reload trigger
+                LaunchedEffect(isLoading) {
+                    if (isLoading) {
+                        loadFighters()
+                    }
                 }
+
 
                 NavHost(navController, startDestination = "fighter_list") {
                     composable("fighter_list") {

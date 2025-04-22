@@ -1,13 +1,15 @@
 package com.example.fightbase
-import androidx. compose. ui. graphics. Color
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 
 @Composable
@@ -22,11 +24,10 @@ fun AddFighterScreen(navController: NavController, onFighterAdded: () -> Unit) {
     var nationality by remember { mutableStateOf("") }
     var imageUrl by remember { mutableStateOf("") }
 
-
     var isLoading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
-    Text("Add Fighter Screen Loaded", modifier = Modifier.padding(16.dp))
 
+    Text("Add Fighter Screen Loaded", modifier = Modifier.padding(16.dp))
 
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -40,7 +41,9 @@ fun AddFighterScreen(navController: NavController, onFighterAdded: () -> Unit) {
                     label = { Text(label) },
                     value = value,
                     onValueChange = onValueChange,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
                 )
             }
 
@@ -50,6 +53,7 @@ fun AddFighterScreen(navController: NavController, onFighterAdded: () -> Unit) {
             labeledField("Draws", draws) { draws = it }
             labeledField("Weight Class", weightClass) { weightClass = it }
             labeledField("Nationality", nationality) { nationality = it }
+            labeledField("Image URL", imageUrl) { imageUrl = it } // ✅ added field
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -73,14 +77,22 @@ fun AddFighterScreen(navController: NavController, onFighterAdded: () -> Unit) {
                             )
 
                             try {
-                            ApiClient.fighterService.addFighter(fighter)
-                            onFighterAdded()
-                            navController.popBackStack()
-                        } catch (e: Exception) {
-                            errorMessage = "Failed to add fighter: ${e.message}"
-                        } finally {
-                            isLoading = false
-                        }
+                                val response = ApiClient.fighterService.addFighter(fighter)
+                                if (response.isSuccessful) {
+                                    println("✅ Fighter added successfully")
+                                    onFighterAdded()
+                                    delay(300) // Add this
+                                    navController.popBackStack()
+                                } else {
+                                    errorMessage = "Failed to add fighter: ${response.code()}"
+                                    println("❌ Failed to add fighter: ${response.code()} ${response.errorBody()?.string()}")
+                                }
+
+                            } catch (e: Exception) {
+                                errorMessage = "Failed to add fighter: ${e.message}"
+                            } finally {
+                                isLoading = false
+                            }
                         } catch (e: Exception) {
                             e.printStackTrace()
                             errorMessage = e.message ?: "Unknown error"
@@ -94,8 +106,9 @@ fun AddFighterScreen(navController: NavController, onFighterAdded: () -> Unit) {
             }
         }
     }
+
     if (errorMessage != null) {
         Text("Error: $errorMessage", color = Color.Red)
     }
-
 }
+
