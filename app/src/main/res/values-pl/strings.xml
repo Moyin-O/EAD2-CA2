@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">FightBase</string>
+    <string name="loading">Ładowanie...</string>
+    <string name="error_loading">Błąd podczas ładowania danych</string>
+    <string name="nationality_format">Narodowość: %1$s</string>
+
+    <string name="fighter_list_title">Lista zawodników</string>
+    <string name="search_fighters">Szukaj zawodników</string>
+    <string name="error_loading_data">Błąd: %1$s</string>
+    <string name="record_inline">Rekord: %1$dW-%2$dP-%3$dR</string>
+    <string name="record">Rekord</string>
+    <string name="weight_class">Kategoria wagowa</string>
+    <string name="nationality">Narodowość</string>
+    <string name="back">Wstecz</string>
+    <string name="search_placeholder">Szukaj zawodników</string>
+    <string name="add_fighter">Dodaj zawodnika</string>
+    <string name="record_format">Rekord: %1$s-%2$s-%3$s</string>
+    <string name="weight_class_format">Kategoria: %1$s</string>
+    <string name="delete">Usuń</string>
+
+    <string name="add_new_fighter">Dodaj nowego zawodnika</string>
+    <string name="name">Imię</string>
+    <string name="wins">Wygrane</string>
+    <string name="losses">Przegrane</string>
+    <string name="draws">Remisy</string>
+    <string name="image_url">URL obrazka</string>
+    <string name="error_adding_fighter">Nie udało się dodać zawodnika: %1$s</string>
+    <string name="fight_list_title">Lista walk</string>
+    <string name="add_new_fight">Dodaj nową walkę</string>
+    <string name="fighter_id">ID zawodnika</string>
+    <string name="language_label">Język</string>
+    <string name="opponent_id">ID przeciwnika</string>
+    <string name="event_name">Nazwa wydarzenia</string>
+    <string name="result">Wynik (Wygrana/Przegrana/Remis)</string>
+    <string name="date">Data (rrrr-mm-dd)</string>
+    <string name="add_fight">Dodaj walkę</string>
+    <string name="vs">VS</string>
+    <string name="winner">Zwycięzca</string>
+    <string name="fighter">Zawodnik</string>
+    <string name="opponent">Przeciwnik</string>
+    <string name="previous_fights">Poprzednie Walki</string>
+    <string name="change_language">Zmień język</string>
+    <string name="error_adding_fight">Nie udało się dodać walki: %1$s</string>
+
+    <string name="sort">Sortuj</string>
+    <string name="theme_toggle">Zmień motyw</string>
+    <string name="toggle_mode">Zawodnicy/Walki</string>
+    <string name="toggle_delete_mode">Tryb usuwania</string>
+
+    <string name="save_changes">Zapisz zmiany</string>
+    <string name="edit">Edytuj</string>
+    <string name="update_fighter">Zaktualizuj zawodnika</string>
+
+</resources>

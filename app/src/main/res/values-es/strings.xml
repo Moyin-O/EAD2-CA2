@@ -1,18 +1,56 @@
 <resources>
     <string name="app_name">FightBase</string>
-    <string name="search_placeholder">Buscar Luchadores</string>
-
-    <string name="nationality_format">Nacionalidad: %1$s</string>
-
     <string name="loading">Cargando...</string>
     <string name="error_loading">Error al cargar datos</string>
-    <string name="fighter_list_title">Lista de Peleadores</string>
+    <string name="nationality_format">Nacionalidad: %1$s</string>
+    <string name="fight_list_title">Lista de peleas</string>
+    <string name="fighter_list_title">Lista de luchadores</string>
+    <string name="search_fighters">Buscar luchadores</string>
+    <string name="error_loading_data">Error: %1$s</string>
+    <string name="record_inline">Récord: %1$dG-%2$dP-%3$dE</string>
     <string name="record">Récord</string>
-    <string name="weight_class">Categoría de Peso</string>
+    <string name="language_label">Idioma</string>
+    <string name="weight_class">Categoría de peso</string>
     <string name="nationality">Nacionalidad</string>
+    <string name="change_language">Cambiar idioma</string>
+    <string name="previous_fights">Peleas Anteriores</string>
+    <string name="vs">VS</string>
+    <string name="winner">Ganador</string>
+    <string name="fighter">Luchador</string>
+    <string name="opponent">Oponente</string>
+
+
     <string name="back">Atrás</string>
+    <string name="search_placeholder">Buscar luchadores</string>
+    <string name="add_fighter">Agregar luchador</string>
     <string name="record_format">Récord: %1$s-%2$s-%3$s</string>
-    <string name="weight_class_format">Categoría de peso: %1$s</string>
-    <string name="add_fighter">Agregar Peleador</string>
+    <string name="weight_class_format">Categoría: %1$s</string>
+    <string name="delete">Eliminar</string>
+
+    <string name="add_new_fighter">Agregar nuevo luchador</string>
+    <string name="name">Nombre</string>
+    <string name="wins">Victorias</string>
+    <string name="losses">Derrotas</string>
+    <string name="draws">Empates</string>
+    <string name="image_url">URL de imagen</string>
+    <string name="error_adding_fighter">Error al agregar luchador: %1$s</string>
+
+    <string name="add_new_fight">Agregar nueva pelea</string>
+    <string name="fighter_id">ID del luchador</string>
+    <string name="opponent_id">ID del oponente</string>
+    <string name="event_name">Nombre del evento</string>
+    <string name="result">Resultado (Victoria/Derrota/Empate)</string>
+    <string name="date">Fecha (aaaa-mm-dd)</string>
+    <string name="add_fight">Agregar pelea</string>
+    <string name="error_adding_fight">Error al agregar pelea: %1$s</string>
+
+    <string name="sort">Ordenar</string>
+    <string name="theme_toggle">Cambiar tema</string>
+    <string name="toggle_mode">Luchadores/Peleas</string>
+    <string name="toggle_delete_mode">Modo eliminar</string>
+
+    <string name="save_changes">Guardar cambios</string>
+    <string name="edit">Editar</string>
+    <string name="update_fighter">Actualizar luchador</string>
 
 </resources>

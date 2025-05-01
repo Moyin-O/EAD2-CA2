@@ -4,16 +4,50 @@
     <string name="error_loading">Error loading data</string>
     <string name="nationality_format">Nationality: %1$s</string>
 
-
     <string name="fighter_list_title">Fighter List</string>
+    <string name="search_fighters">Search fighters</string>
+    <string name="error_loading_data">Error: %1$s</string>
+    <string name="record_inline">Record: %1$dW-%2$dL-%3$dD</string>
     <string name="record">Record</string>
     <string name="weight_class">Weight Class</string>
     <string name="nationality">Nationality</string>
     <string name="back">Back</string>
     <string name="search_placeholder">Search Fighters</string>
     <string name="add_fighter">Add Fighter</string>
-
-
     <string name="record_format">Record: %1$s-%2$s-%3$s</string>
     <string name="weight_class_format">Weight Class: %1$s</string>
+    <string name="delete">Delete</string>
+
+    <string name="add_new_fighter">Add New Fighter</string>
+    <string name="name">Name</string>
+    <string name="wins">Wins</string>
+    <string name="losses">Losses</string>
+    <string name="draws">Draws</string>
+    <string name="image_url">Image URL</string>
+    <string name="error_adding_fighter">Failed to add fighter: %1$s</string>
+
+    <string name="add_new_fight">Add New Fight</string>
+    <string name="fighter_id">First Fighter ID</string>
+    <string name="opponent_id">Second Fighter ID</string>
+    <string name="event_name">Event Name</string>
+    <string name="result">Result (Win/Loss/Draw)</string>
+    <string name="date">Date (yyyy-mm-dd)</string>
+    <string name="add_fight">Add Fight</string>
+    <string name="error_adding_fight">Failed to add fight: %1$s</string>
+    <string name="fight_list_title">Fight List</string>
+    <string name="language_label">Language</string>
+    <string name="sort">Sort</string>
+    <string name="previous_fights">Previous Fights</string>
+    <string name="change_language">Change Language</string>
+    <string name="theme_toggle">Toggle Theme</string>
+    <string name="toggle_mode">Toggle Fighters/Fights</string>
+    <string name="toggle_delete_mode">Toggle Delete Mode</string>
+    <string name="vs">VS</string>
+    <string name="winner">Winner</string>
+    <string name="fighter">Fighter</string>
+    <string name="opponent">Opponent</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="edit">Edit</string>
+    <string name="update_fighter">Update Fighter</string>
+
 </resources>

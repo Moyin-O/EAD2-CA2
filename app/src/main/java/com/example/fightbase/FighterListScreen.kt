@@ -5,104 +5,92 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun FighterListScreen(
     fighters: List<FighterResponse>,
     isLoading: Boolean,
     error: String?,
+    showDelete: Boolean,
+    onRefresh: () -> Unit,
     onFighterClick: (FighterResponse) -> Unit,
-    onAddClick: () -> Unit
+    onDeleteFighter: (Int) -> Unit
 ) {
-    var searchText by remember { mutableStateOf("") }
+    var search by remember { mutableStateOf("") }
+    val swipeState = rememberSwipeRefreshState(isRefreshing = isLoading)
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                OutlinedTextField(
-                    value = searchText,
-                    onValueChange = { searchText = it },
-                    label = { Text("Search fighters") },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 16.dp)
-                )
+    SwipeRefresh(state = swipeState, onRefresh = onRefresh) {
+        Column(Modifier.fillMaxSize().padding(16.dp)) {
+            Text(stringResource(R.string.fighter_list_title), style = MaterialTheme.typography.headlineSmall)
+            Spacer(Modifier.height(12.dp))
 
-                when {
-                    isLoading -> Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
-                    }
+            OutlinedTextField(
+                value = search,
+                onValueChange = { search = it },
+                label = { Text(stringResource(R.string.search_fighters)) },
+                modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+            )
 
-                    error != null -> Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(text = "Error loading fighters")
-                    }
-
-                    else -> {
-                        val filtered = fighters.filter {
-                            it.name.contains(searchText, ignoreCase = true)
-                        }
-
-                        LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                            items(filtered) { fighter ->
-                                Card(
+            when {
+                error != null -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(stringResource(R.string.error_loading_data, error))
+                }
+                else -> LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    items(fighters.filter { it.name.contains(search, ignoreCase = true) }) { f ->
+                        Card(
+                            Modifier
+                                .fillMaxWidth()
+                                .clickable { onFighterClick(f) },
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Row(
+                                Modifier.padding(12.dp).fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                AsyncImage(
+                                    model = f.fighterImage,
+                                    contentDescription = f.name,
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable { onFighterClick(fighter) },
-                                    shape = RoundedCornerShape(12.dp)
-                                ) {
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(12.dp)
-                                            .fillMaxWidth(),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        AsyncImage(
-                                            model = fighter.fighterImage,
-                                            contentDescription = fighter.name,
-                                            modifier = Modifier
-                                                .size(64.dp)
-                                                .clip(RoundedCornerShape(8.dp)),
-                                            contentScale = ContentScale.Crop
+                                        .size(64.dp)
+                                        .clip(RoundedCornerShape(4.dp)),
+                                    contentScale = ContentScale.Crop
+                                )
+                                Spacer(Modifier.width(16.dp))
+                                Column(Modifier.weight(1f)) {
+                                    Text(f.name, fontSize = 18.sp)
+                                    Text(
+                                        stringResource(
+                                            R.string.record_inline,
+                                            f.wins, f.losses, f.draws
                                         )
-
-                                        Spacer(modifier = Modifier.width(16.dp))
-
-                                        Column {
-                                            Text(text = fighter.name, fontSize = 18.sp)
-                                            Text(text = "Record: ${fighter.wins}W-${fighter.losses}L-${fighter.draws}D")
-                                            Text(text = fighter.weightClass, color = MaterialTheme.colorScheme.primary)
-                                        }
+                                    )
+                                    Text(f.weightClass, color = MaterialTheme.colorScheme.primary)
+                                }
+                                if (showDelete) {
+                                    IconButton(onClick = { onDeleteFighter(f.id) }) {
+                                        Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.delete))
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
-
-            FloatingActionButton(
-                onClick = onAddClick,
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(16.dp)
-            ) {
-                Icon(Icons.Filled.Add, contentDescription = "Add Fighter")
             }
         }
     }
